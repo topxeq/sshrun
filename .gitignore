@@ -1,0 +1,18 @@
+# Executable files
+sshrun.exe
+sshrun
+
+# Temporary files
+*.tmp
+*.temp
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build files
+build/
