@@ -157,7 +157,7 @@ sshrun.exe -host=192.168.1.1 -user=root -password=password -type=sync -direction
 sshrun.exe -host=192.168.1.1 -user=root -password=password -type=sync -direction=push -localPath=./dist -remotePath=/opt/app/dist -recursive=true -include=dist/** -exclude=**/*.map
 ```
 
-`-delete` 目前只支持单向 `push/pull`，双向同步不会执行删除。
+`-delete` currently only applies to one-way `push` or `pull` sync. It is not used during bidirectional sync.
 
 ## Practical Notes
 
