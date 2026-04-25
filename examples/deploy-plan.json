@@ -1,0 +1,41 @@
+{
+  "steps": [
+    {
+      "name": "sync config directory",
+      "type": "sync",
+      "direction": "push",
+      "local_path": "./configs",
+      "remote_path": "/opt/myapp/configs",
+      "recursive": true,
+      "delete": true,
+      "include": [
+        "**/*.json"
+      ]
+    },
+    {
+      "name": "stop old process",
+      "type": "cmd",
+      "cmd": "pkill -x myapp || true",
+      "timeout": "10s"
+    },
+    {
+      "name": "upload binary atomically",
+      "type": "upload_atomic",
+      "local_path": "./myapp-linux",
+      "remote_path": "/opt/myapp/myapp",
+      "temp_path": "/opt/myapp/myapp.tmp"
+    },
+    {
+      "name": "chmod binary",
+      "type": "chmod",
+      "remote_path": "/opt/myapp/myapp",
+      "mode": "0755"
+    },
+    {
+      "name": "start service",
+      "type": "cmd",
+      "cmd": "cd /opt/myapp && setsid -f ./myapp -config configs/config.json > logs/app.log 2>&1",
+      "timeout": "15s"
+    }
+  ]
+}

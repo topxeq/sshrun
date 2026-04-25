@@ -1,0 +1,44 @@
+{
+  "steps": [
+    {
+      "name": "push dist assets",
+      "type": "sync",
+      "direction": "push",
+      "local_path": "./dist",
+      "remote_path": "/opt/app/dist",
+      "recursive": true,
+      "delete": true,
+      "include": [
+        "**/*.html",
+        "**/*.css",
+        "**/*.js"
+      ],
+      "exclude": [
+        "**/*.map"
+      ]
+    },
+    {
+      "name": "pull logs for inspection",
+      "type": "sync",
+      "direction": "pull",
+      "local_path": "./logs",
+      "remote_path": "/opt/app/logs",
+      "recursive": true,
+      "include": [
+        "**/*.log"
+      ]
+    },
+    {
+      "name": "bidirectional config sync",
+      "type": "sync",
+      "direction": "bidirectional",
+      "local_path": "./configs",
+      "remote_path": "/opt/app/configs",
+      "recursive": true,
+      "conflict": "fail_on_conflict",
+      "include": [
+        "**/*.json"
+      ]
+    }
+  ]
+}
